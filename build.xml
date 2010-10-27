@@ -30,14 +30,14 @@
  <!-- Generate jdepend.xml and software metrics charts -->
  <target name="pdepend">
   <exec executable="pdepend">
-   <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml Object" />
+   <arg line="--jdepend-xml=${basedir}/build/logs/jdepend.xml source" />
   </exec>
  </target>
 
  <!-- Generate pmd.xml -->
  <target name="phpmd">
   <exec executable="phpmd">
-   <arg line="Object xml codesize,unusedcode
+   <arg line="source xml codesize,unusedcode
               --reportfile ${basedir}/build/logs/pmd.xml" />
   </exec>
  </target>
@@ -45,7 +45,7 @@
  <!-- Generate pmd-cpd.xml -->
  <target name="phpcpd">
   <exec executable="phpcpd">
-   <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml Object" />
+   <arg line="--log-pmd ${basedir}/build/logs/pmd-cpd.xml source" />
   </exec>
  </target>
 
@@ -54,8 +54,8 @@
   <exec executable="phpcs" output="/dev/null">
    <arg line="--report=checkstyle
               --report-file=${basedir}/build/logs/checkstyle.xml
-              --standard=Sebastian
-              Object" />
+              --standard=Zend
+              source" />
   </exec>
  </target>
 
@@ -69,7 +69,7 @@
  <target name="phpcb">
   <exec executable="phpcb">
    <arg line="--log    ${basedir}/build/logs
-              --source ${basedir}/Object
+              --source ${basedir}/source
               --output ${basedir}/build/code-browser" />
   </exec>
  </target>
