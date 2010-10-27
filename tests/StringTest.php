@@ -13,6 +13,16 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame($this->simpleString, (string)$this->simpleStringObject);
     }
 
+    public function testClone() {
+        $newString = clone $this->simpleStringObject;
+        $this->assertNotSame($newString, $this->simpleStringObject);
+    }
+
+    public function testCopy() {
+        $newString = $this->simpleStringObject->copy();
+        $this->assertNotSame($newString, $this->simpleStringObject);
+    }
+
     public function testLength() {
         $this->assertSame(strlen($this->simpleString), $this->simpleStringObject->length());
     }

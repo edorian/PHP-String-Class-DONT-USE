@@ -12,6 +12,10 @@ class String {
         return $this->string;
     }
 
+    public function copy() {
+        return clone $this;
+    }
+
     public function length() {
         return strlen($this->string);
     }
