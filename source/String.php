@@ -1,6 +1,6 @@
 <?php
 
-class String {
+class String implements Countable {
 
     protected $string;
 
@@ -18,6 +18,10 @@ class String {
 
     public function length() {
         return strlen($this->string);
+    }
+
+    public function count() {
+        return $this->length();
     }
 
     public function toLowerCase() {

@@ -27,6 +27,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(strlen($this->simpleString), $this->simpleStringObject->length());
     }
 
+    public function testCount() {
+        $this->assertSame(strlen($this->simpleString), $this->simpleStringObject->count());
+    }
+
+    public function testCountableInterface() {
+        $this->assertSame(strlen($this->simpleString), count($this->simpleStringObject));
+    }
+
     public function testToLowerCase() {
         $this->simpleStringObject->toLowerCase();
         $this->assertSame(strtolower($this->simpleString), (string)$this->simpleStringObject);
