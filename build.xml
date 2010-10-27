@@ -18,13 +18,13 @@
 
  <!-- Run pdepend, phpmd, phpcpd, and phpcs in parallel -->
  <target name="parallelTasks">
-  <parallel>
+<!--  <parallel> -->
    <antcall target="pdepend"/>
    <antcall target="phpmd"/>
    <antcall target="phpcpd"/>
    <antcall target="phpcs"/>
    <antcall target="phpdoc"/>
-  </parallel>
+<!--  </parallel> -->
  </target>
 
  <!-- Generate jdepend.xml and software metrics charts -->
