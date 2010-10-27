@@ -55,4 +55,16 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject->toUpperCase());
     }
 
+    public function testArrayAccessInterfaceGet() {
+        $this->assertSame($this->simpleString[0], $this->simpleStringObject[0]);
+        $this->assertSame($this->simpleString[5], $this->simpleStringObject[5]);
+    }
+
+    /**
+     * @expectedException OutOfBoundsException
+     */
+    public function testArrayAccessInterfaceGetUninitalisedOffset() {
+        $this->simpleStringObject[100];
+    }
+
 }

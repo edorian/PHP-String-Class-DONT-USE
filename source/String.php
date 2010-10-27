@@ -1,6 +1,6 @@
 <?php
 
-class String implements Countable {
+class String implements Countable, ArrayAccess {
 
     protected $string;
 
@@ -33,5 +33,33 @@ class String implements Countable {
         $this->string = strtoupper($this->string);
         return $this;
     }
+
+
+    /* Implement ArrayAccess */
+    public function offsetExists($offset) {
+        if(isset($this->string[$offset])) {
+            return true;
+        }
+        return false;
+    }
+
+    public function offsetGet($offset) {
+        if(isset($this->string[$offset])) {
+            return $this->string[$offset];
+        }
+        throw new OutOfBoundsException("Uninitialized string offset: $offset");
+    }
+
+    public function offsetSet($offset, $value) {
+
+    }
+
+    public function offsetUnset($offset) {
+
+    }
+
+
+    /* /Implement ArrayAccess */
+
 
 }
