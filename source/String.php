@@ -12,4 +12,7 @@ class String {
         return $this->string;
     }
 
+    public function length() {
+        return strlen($this->string);
+    }
 }

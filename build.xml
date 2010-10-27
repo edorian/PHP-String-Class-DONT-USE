@@ -37,7 +37,7 @@
  <!-- Generate pmd.xml -->
  <target name="phpmd">
   <exec executable="phpmd">
-   <arg line="source xml codesize,unusedcode
+   <arg line="source xml codesize,unusedcode,naming,design
               --reportfile ${basedir}/build/logs/pmd.xml" />
   </exec>
  </target>
