@@ -37,4 +37,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(strtolower($this->simpleString), (string)$this->simpleStringObject->toLowerCase());
     }
 
+    public function testToUpperCase() {
+        $this->simpleStringObject->toUpperCase();
+        $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject);
+    }
+
+    public function testToUpperCaseFluent() {
+        $this->assertSame($this->simpleStringObject, $this->simpleStringObject->toUpperCase());
+        $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject->toUpperCase());
+    }
+
 }

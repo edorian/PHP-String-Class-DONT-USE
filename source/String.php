@@ -24,4 +24,10 @@ class String {
         $this->string = strtolower($this->string);
         return $this;
     }
+
+    public function toUpperCase() {
+        $this->string = strtoupper($this->string);
+        return $this;
+    }
+
 }
