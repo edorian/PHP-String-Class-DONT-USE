@@ -15,4 +15,9 @@ class String {
     public function length() {
         return strlen($this->string);
     }
+
+    public function toLowerCase() {
+        $this->string = strtolower($this->string);
+        return $this;
+    }
 }
