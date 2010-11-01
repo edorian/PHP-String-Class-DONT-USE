@@ -67,4 +67,23 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->simpleStringObject[100];
     }
 
+    public function testArrayAccessInterfaceSetUninitalisedOffset() {
+        $this->simpleStringObject[100] = "a";
+        $this->assertSame("a", $this->simpleStringObject[100]);
+        $this->assertSame(101, $this->simpleStringObject->length());
+    }
+
+    public function testArrayAccessInterfaceSettingUninitialisedOffsetCreatesWhitespace() {
+        $this->simpleStringObject[100] = "a";
+        $this->assertSame(" ", $this->simpleStringObject[99]);
+    }
+
+    /**
+     * @expectedException Exception
+     */
+    public function testArrayAccessInterfaceUnset() {
+        unset($this->simpleStringObject[1]);
+    }
+
 }
+

@@ -51,15 +51,14 @@ class String implements Countable, ArrayAccess {
     }
 
     public function offsetSet($offset, $value) {
-
+        $this->string[$offset] = $value;
     }
 
     public function offsetUnset($offset) {
-
+        throw new Exception("Cannot unset string offsets");
     }
-
 
     /* /Implement ArrayAccess */
 
-
 }
+
