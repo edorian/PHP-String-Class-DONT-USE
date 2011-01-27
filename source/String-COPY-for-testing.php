@@ -1,6 +1,6 @@
 <?php
 
-class String implements Countable, ArrayAccess {
+class StringCopy implements Countable, ArrayAccess {
 
     protected $string;
 
