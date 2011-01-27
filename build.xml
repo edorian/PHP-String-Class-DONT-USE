@@ -77,7 +77,7 @@
 
  <target name="phploc">
   <exec executable="phploc">
-   <arg line="--log-xml  ${basedir}/build/logs/php-loc.xml
+   <arg line="--log-csv  ${basedir}/build/logs/phploc.csv
               ${basedir}/source "/>
   </exec>
  </target>
