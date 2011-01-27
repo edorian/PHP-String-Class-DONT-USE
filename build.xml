@@ -24,6 +24,7 @@
    <antcall target="phpcpd"/>
    <antcall target="phpcs"/>
    <antcall target="phpdoc"/>
+   <antcall target="phploc"/>
 <!--  </parallel> -->
  </target>
 
@@ -71,6 +72,13 @@
    <arg line="--log    ${basedir}/build/logs
               --source ${basedir}/source
               --output ${basedir}/build/code-browser" />
+  </exec>
+ </target>
+
+ <target name="phploc">
+  <exec executable="phploc">
+   <arg line="--log-xml    ${basedir}/build/logs/php-loc.xml
+              ${basedir}/source ">
   </exec>
  </target>
 
