@@ -85,5 +85,10 @@ class StringTest extends PHPUnit_Framework_TestCase {
         unset($this->simpleStringObject[1]);
     }
 
+    public function testArrayAccessInterfaceOffsetExists() {
+        $this->assertTrue(isset($this->simpleStringObject[3]));
+        $this->assertFalse(isset($this->simpleStringObject[100]));
+    }
+
 }
 
