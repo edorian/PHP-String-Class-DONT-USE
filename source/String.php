@@ -35,6 +35,10 @@ class String implements Countable, ArrayAccess {
         return $this;
     }
 
+    public function startsWith($string) {
+        return !strncmp($this->string, $string, strlen($string));
+    }
+
 
     /* Implement ArrayAccess */
     public function offsetExists($offset) {

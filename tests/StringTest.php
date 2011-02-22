@@ -55,7 +55,15 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject->toUpperCase());
     }
 
+    public function testStartsWithWorksForAMachtingString() {
+        $string = new String("Foo Bar");
+        $this->assertTrue($string->startsWith("Foo"));
+    }
 
+    public function testStartsWithFailsForANonMatchingString() {
+        $string = new String("Foo Bar");
+        $this->assertFalse($string->startsWith("Bar"));
+    }
 
     /* Testing ArrayAccess */
 
