@@ -55,6 +55,10 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject->toUpperCase());
     }
 
+
+
+    /* Testing ArrayAccess */
+
     public function testArrayAccessInterfaceGet() {
         $this->assertSame($this->simpleString[0], $this->simpleStringObject[0]);
         $this->assertSame($this->simpleString[5], $this->simpleStringObject[5]);
@@ -90,5 +94,8 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse(isset($this->simpleStringObject[100]));
     }
 
+    /* /Testing ArrayAccess */
+
 }
+
 
