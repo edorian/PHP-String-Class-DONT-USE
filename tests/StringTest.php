@@ -5,101 +5,99 @@ require_once("source/String.php");
 class StringTest extends PHPUnit_Framework_TestCase {
 
     public function setUp() {
-        $this->simpleString = "Foo Bar";
-        $this->simpleStringObject = new String($this->simpleString);
+        $this->fooBarString = "Foo Bar";
+        $this->fooBarStringObject = new String($this->fooBarString);
     }
 
     public function testToString() {
-        $this->assertSame($this->simpleString, (string)$this->simpleStringObject);
+        $this->assertSame($this->fooBarString, (string)$this->fooBarStringObject);
     }
 
     public function testClone() {
-        $newString = clone $this->simpleStringObject;
-        $this->assertNotSame($newString, $this->simpleStringObject);
+        $newString = clone $this->fooBarStringObject;
+        $this->assertNotSame($newString, $this->fooBarStringObject);
     }
 
     public function testCopy() {
-        $newString = $this->simpleStringObject->copy();
-        $this->assertNotSame($newString, $this->simpleStringObject);
+        $newString = $this->fooBarStringObject->copy();
+        $this->assertNotSame($newString, $this->fooBarStringObject);
     }
 
     public function testLength() {
-        $this->assertSame(strlen($this->simpleString), $this->simpleStringObject->length());
+        $this->assertSame(strlen($this->fooBarString), $this->fooBarStringObject->length());
     }
 
     public function testCount() {
-        $this->assertSame(strlen($this->simpleString), $this->simpleStringObject->count());
+        $this->assertSame(strlen($this->fooBarString), $this->fooBarStringObject->count());
     }
 
     public function testCountableInterface() {
-        $this->assertSame(strlen($this->simpleString), count($this->simpleStringObject));
+        $this->assertSame(strlen($this->fooBarString), count($this->fooBarStringObject));
     }
 
     public function testToLowerCase() {
-        $this->simpleStringObject->toLowerCase();
-        $this->assertSame(strtolower($this->simpleString), (string)$this->simpleStringObject);
+        $this->fooBarStringObject->toLowerCase();
+        $this->assertSame(strtolower($this->fooBarString), (string)$this->fooBarStringObject);
     }
 
     public function testToLowerCaseFluent() {
-        $this->assertSame($this->simpleStringObject, $this->simpleStringObject->toLowerCase());
-        $this->assertSame(strtolower($this->simpleString), (string)$this->simpleStringObject->toLowerCase());
+        $this->assertSame($this->fooBarStringObject, $this->fooBarStringObject->toLowerCase());
+        $this->assertSame(strtolower($this->fooBarString), (string)$this->fooBarStringObject->toLowerCase());
     }
 
     public function testToUpperCase() {
-        $this->simpleStringObject->toUpperCase();
-        $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject);
+        $this->fooBarStringObject->toUpperCase();
+        $this->assertSame(strtoupper($this->fooBarString), (string)$this->fooBarStringObject);
     }
 
     public function testToUpperCaseFluent() {
-        $this->assertSame($this->simpleStringObject, $this->simpleStringObject->toUpperCase());
-        $this->assertSame(strtoupper($this->simpleString), (string)$this->simpleStringObject->toUpperCase());
+        $this->assertSame($this->fooBarStringObject, $this->fooBarStringObject->toUpperCase());
+        $this->assertSame(strtoupper($this->fooBarString), (string)$this->fooBarStringObject->toUpperCase());
     }
 
     public function testStartsWithWorksForAMachtingString() {
-        $string = new String("Foo Bar");
-        $this->assertTrue($string->startsWith("Foo"));
+        $this->assertTrue($this->fooBarString->startsWith("Foo"));
     }
 
     public function testStartsWithFailsForANonMatchingString() {
-        $string = new String("Foo Bar");
-        $this->assertFalse($string->startsWith("Bar"));
+        $this->assertFalse($this->fooBarString->startsWith("Bar"));
     }
 
     /* Testing ArrayAccess */
 
     public function testArrayAccessInterfaceGet() {
-        $this->assertSame($this->simpleString[0], $this->simpleStringObject[0]);
-        $this->assertSame($this->simpleString[5], $this->simpleStringObject[5]);
+        $this->assertSame($this->fooBarString[0], $this->fooBarStringObject[0]);
+        $this->assertSame($this->fooBarString[5], $this->fooBarStringObject[5]);
     }
 
     /**
      * @expectedException OutOfBoundsException
      */
     public function testArrayAccessInterfaceGetUninitalisedOffset() {
-        $this->simpleStringObject[100];
+        $this->fooBarStringObject[100];
     }
 
     public function testArrayAccessInterfaceSetUninitalisedOffset() {
-        $this->simpleStringObject[100] = "a";
-        $this->assertSame("a", $this->simpleStringObject[100]);
-        $this->assertSame(101, $this->simpleStringObject->length());
+        $this->fooBarStringObject[100] = "a";
+        $this->assertSame("a", $this->fooBarStringObject[100]);
+        $this->assertSame(101, $this->fooBarStringObject->length());
     }
 
     public function testArrayAccessInterfaceSettingUninitialisedOffsetCreatesWhitespace() {
-        $this->simpleStringObject[100] = "a";
-        $this->assertSame(" ", $this->simpleStringObject[99]);
+        $this->fooBarStringObject[100] = "a";
+        $this->assertSame(" ", $this->fooBarStringObject[99]);
     }
 
     /**
      * @expectedException Exception
      */
     public function testArrayAccessInterfaceUnset() {
-        unset($this->simpleStringObject[1]);
+        unset($this->fooBarStringObject[1]);
     }
 
     public function testArrayAccessInterfaceOffsetExists() {
-        $this->assertTrue(isset($this->simpleStringObject[3]));
-        $this->assertFalse(isset($this->simpleStringObject[100]));
+        $this->assertTrue(isset($this->fooBarStringObject[3]));
+        $this->assertFalse(isset($this->fooBarStringObject[100]));
     }
 
     /* /Testing ArrayAccess */
