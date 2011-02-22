@@ -40,10 +40,13 @@ class String implements Countable, ArrayAccess {
     }
 
     public function endsWith($string) {
-        return $string == substr($this->string, count($this) - strlen($string));
+        return $string == $this->substring(count($this) - strlen($string));
     }
 
-    public function substring($from, $length) {
+    public function substring($from, $length=null) {
+        if($length === null) {
+            return new static(substr($this->string, $from));
+        }
         return new static(substr($this->string, $from, $length));
     }
 
