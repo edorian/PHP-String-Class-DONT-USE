@@ -115,7 +115,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
     /**
      * @covers String::substring
      */
-    public function testSubstringWorksForTheWholeString() {
+    public function testSubstringWorksForTheWholeStringWithOneParameter() {
+        $this->assertEquals(new String($this->fooBarString), $this->fooBarStringObject->substring(0));
+    }
+
+    /**
+     * @covers String::substring
+     */
+    public function testSubstringWorksForTheWholeStringWithTwoParameters() {
         $this->assertEquals(new String($this->fooBarString), $this->fooBarStringObject->substring(0, 10));
     }
 
