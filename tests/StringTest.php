@@ -56,12 +56,21 @@ class StringTest extends PHPUnit_Framework_TestCase {
     }
 
     public function testStartsWithWorksForAMachtingString() {
-        $this->assertTrue($this->fooBarString->startsWith("Foo"));
+        $this->assertTrue($this->fooBarStringObject->startsWith("Foo"));
     }
 
     public function testStartsWithFailsForANonMatchingString() {
-        $this->assertFalse($this->fooBarString->startsWith("Bar"));
+        $this->assertFalse($this->fooBarStringObject->startsWith("Bar"));
     }
+
+    public function testEndsWithWorksForAMatchingString() {
+        $this->assertTrue($this->fooBarStringObject->endsWith("Bar"));
+    }
+
+    public function testEndsWithFailsForANonMatchingString() {
+        $this->assertFalse($this->fooBarStringObject->endsWith("Foo"));
+    }
+
 
     /* Testing ArrayAccess */
 

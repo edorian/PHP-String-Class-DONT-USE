@@ -39,6 +39,9 @@ class String implements Countable, ArrayAccess {
         return !strncmp($this->string, $string, strlen($string));
     }
 
+    public function endsWith($string) {
+        return $string == substr($this->string, count($this) - strlen($string));
+    }
 
     /* Implement ArrayAccess */
     public function offsetExists($offset) {
