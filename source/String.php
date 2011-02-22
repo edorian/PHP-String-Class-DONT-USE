@@ -1,5 +1,6 @@
 <?php
 
+
 class String implements Countable, ArrayAccess {
 
     protected $string;
@@ -55,7 +56,7 @@ class String implements Countable, ArrayAccess {
     }
 
     public function offsetUnset($offset) {
-        throw new Exception("Cannot unset string offsets");
+        throw new Exception("Cannot unset string offsets. Unset was called for position $offset");
     }
 
     /* /Implement ArrayAccess */
