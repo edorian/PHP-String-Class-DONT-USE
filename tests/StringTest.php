@@ -71,6 +71,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertFalse($this->fooBarStringObject->endsWith("Foo"));
     }
 
+    public function testSubstringWorksForTheWholeString() {
+        $this->assertEquals(new String($this->fooBarString), $this->fooBarStringObject->substring(0, 10));
+    }
+
+    public function testSubstringWorksForAMiddlePartOfTheString() {
+        $this->assertEquals(new String("o B"), $this->fooBarStringObject->substring("2", "3"));
+    }
+
 
     /* Testing ArrayAccess */
 

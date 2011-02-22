@@ -43,6 +43,10 @@ class String implements Countable, ArrayAccess {
         return $string == substr($this->string, count($this) - strlen($string));
     }
 
+    public function substring($from, $length) {
+        return new static(substr($this->string, $from, $length));
+    }
+
     /* Implement ArrayAccess */
     public function offsetExists($offset) {
         if(isset($this->string[$offset])) {
