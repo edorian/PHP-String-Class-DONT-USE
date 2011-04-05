@@ -33,6 +33,10 @@ class String implements Countable, ArrayAccess {
         return new static(strtoupper($this->string));
     }
 
+    public function contains($string) {
+        return strpos($this->string, $string) !== false;
+    }
+
     public function startsWith($string) {
         return !strncmp($this->string, $string, strlen($string));
     }
@@ -41,12 +45,40 @@ class String implements Countable, ArrayAccess {
         return $string == $this->substring(count($this) - strlen($string));
     }
 
+    public function equals($string) {
+        return $this->string == $string;
+    }
+
+    public function matches($regularExpression) {
+        $result = preg_match($regularExpression, $this->string);
+        if($result === false) {
+            throw new InvalidArgumentException("Possibly malformed regular expression");
+        }
+        return (bool)$result;
+    }
+
+    // equalsIngoringCase?
+
+    public function compareTo($string) {
+        return strcmp($string, $this->string);
+    }
+
+    // compareToIgnoringCase?
+
     public function substring($from, $length=null) {
         if($length === null) {
             return new static(substr($this->string, $from));
         }
         return new static(substr($this->string, $from, $length));
     }
+
+    public function trim() {
+        return new static(trim($this->string));   
+    }
+
+    // replace, replaceRegex?
+
+    // split
 
     /* Implement ArrayAccess */
     public function offsetExists($offset) {

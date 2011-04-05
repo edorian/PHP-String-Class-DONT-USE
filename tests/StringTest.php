@@ -24,8 +24,9 @@ class StringTest extends PHPUnit_Framework_TestCase {
     /**
      * @covers String::copy
      */
-    public function testCopy() {
+    public function testCopyCreatesANewStringInstance() {
         $newString = $this->fooBarStringObject->copy();
+        $this->assertInstanceOf("String", $newString);
         $this->assertNotSame($newString, $this->fooBarStringObject);
     }
 
@@ -39,14 +40,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
     /**
      * @covers String::count
      */
-    public function testCount() {
+    public function testCountReturnTheStringsLength() {
         $this->assertSame(strlen($this->fooBarString), $this->fooBarStringObject->count());
     }
 
     /**
      * @covers String::count
      */
-    public function testCountableInterface() {
+    public function testCountableInterfaceReturnsTheStringsLength() {
         $this->assertSame(strlen($this->fooBarString), count($this->fooBarStringObject));
     }
 
@@ -63,6 +64,21 @@ class StringTest extends PHPUnit_Framework_TestCase {
     public function testToUpperCase() {
         $this->fooBarStringObject->toUpperCase();
         $this->assertSame(strtoupper($this->fooBarString), (string)$this->fooBarStringObject->toUpperCase());
+    }
+
+    /**
+     * @covers String::contains
+     */
+    public function testContainsReturnsTrueForAMatchingString() {
+        $this->assertTrue($this->fooBarStringObject->contains("Foo"));
+        $this->assertTrue($this->fooBarStringObject->contains("Bar"));
+    }
+
+    /**
+     * @covers String::contains
+     */
+    public function testContainsReturnsFalseForANonMatchingString() {
+        $this->assertFalse($this->fooBarStringObject->contains("Not"));
     }
 
     /**
@@ -94,6 +110,69 @@ class StringTest extends PHPUnit_Framework_TestCase {
     }
 
     /**
+     * @covers String::equals
+     */
+    public function testEqualsDetectsAMatchingString() {
+        $string = new String("Foo");
+        $this->assertTrue($string->equals("Foo"));
+    }
+
+    /**
+     * @covers String::equals
+     */
+    public function testEqualsDetectsANonMatchingString() {
+        $string = new String("Bar");
+        $this->assertFalse($string->equals("Foo"));
+    }
+
+    /**
+     * @covers String::compareTo
+     */
+    public function testCompareToReturnsZeroForMatchingStrings() {
+        $this->assertEquals(0, $this->fooBarStringObject->compareTo($this->fooBarString));
+    }
+
+    /**
+     * @covers String::compareTo
+     */
+    public function testCompareToReturnsNegativeValueIfPassedInStringIsSmaller() {
+        $string = new String("5");
+        $result = $string->compareTo("3");
+        $this->assertTrue($result < 0, "Comparision result is not smaller than 0 but is $result");
+    }
+
+    /**
+     * @covers String::matches
+     */
+    public function testMatchesReturnsTrueForAMatchingRegularExpression() {
+        $this->assertTrue($this->fooBarStringObject->matches("~^Foo~"));
+    }
+
+    /**
+     * @covers String::matches
+     */
+    public function testMatchesReturnsFalseForANonMatchingRegularExpression() {
+        $this->assertFalse($this->fooBarStringObject->matches("~^Bar~"));
+    }
+
+    /**
+     * @covers String::matches
+     * @expectedException InvalidArgumentException
+     */
+    public function testMatchesFailsForAMalformedRegularExpression() {
+        $this->assertTrue(@$this->fooBarStringObject->matches("~Foo/"));
+    }
+
+    /**
+     * @covers String::compareTo
+     */
+    public function testCompareToReturnsPositiveValueIfPassedInStringIsBigger() {
+        $string = new String("5");
+        $result = $string->compareTo("7");
+        $this->assertTrue($result > 0, "Comparision result is not smaller than 0 but is $result");
+    }
+
+    /**
      * @covers String::substring
      */
     public function testSubstringWorksForTheWholeStringWithOneParameter() {
@@ -114,6 +193,13 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->assertEquals(new String("o B"), $this->fooBarStringObject->substring("2", "3"));
     }
 
+    /**
+     * @covers String::trim
+     */
+    public function testTrimCutsSpacesInFrontOfAndAfterTheString() {
+        $string = new String(" Foo ");
+        $this->assertEquals(new String("Foo"), $string->trim());
+    }
 
     /* Testing ArrayAccess */
 
