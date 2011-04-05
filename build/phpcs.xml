@@ -6,13 +6,6 @@
  <exclude-pattern>*/tests/*</exclude-pattern>
  <exclude-pattern>*/build/*</exclude-pattern>
 
- <!--
-    Include all sniffs in an external standard directory. Note
-    that we have to specify the full path to the standard's
-    directory because it does not exist inside the PHP_CodeSniffer
-    install directory.
- <rule ref="/home/username/standards/mystandard"/>
- -->
  <rule ref="Generic.Classes.DuplicateClassName"/>
 
  <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
