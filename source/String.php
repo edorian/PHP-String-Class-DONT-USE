@@ -26,13 +26,11 @@ class String implements Countable, ArrayAccess {
     }
 
     public function toLowerCase() {
-        $this->string = strtolower($this->string);
-        return $this;
+        return new static(strtolower($this->string));
     }
 
     public function toUpperCase() {
-        $this->string = strtoupper($this->string);
-        return $this;
+        return new static(strtoupper($this->string));
     }
 
     public function startsWith($string) {
