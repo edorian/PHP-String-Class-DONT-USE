@@ -9,6 +9,14 @@ class StringTest extends PHPUnit_Framework_TestCase {
         $this->fooBarStringObject = new String($this->fooBarString);
     }
 
+    public function testSkipped() {
+        $this->markTestSkipped();
+    }
+
+    public function testIncomplete() {
+        $this->markTestIncomplete();
+    }
+    
     /**
      * @covers String::__toString
      */
