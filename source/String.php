@@ -100,7 +100,7 @@ class String implements Countable, ArrayAccess {
     }
 
     public function offsetUnset($offset) {
-        throw new Exception("Cannot unset string offsets. Unset was called for position $offset");
+        throw new BadFunctionCallException("Cannot unset string offsets. Unset was called for position $offset");
     }
 
     /* /Implement ArrayAccess */

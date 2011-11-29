@@ -249,7 +249,7 @@ class StringTest extends PHPUnit_Framework_TestCase {
 
     /**
      * @covers String::offsetUnset
-     * @expectedException Exception
+     * @expectedException BadFunctionCallException
      */
     public function testArrayAccessInterfaceUnset() {
         unset($this->fooBarStringObject[1]);
